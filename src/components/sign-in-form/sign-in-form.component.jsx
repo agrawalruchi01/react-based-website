@@ -25,18 +25,22 @@ const SignInForm = () => {
     const handlerSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await signInWithManualUserNameandPassword(email, password);
-            console.log(response);
+            const {user} = await signInWithManualUserNameandPassword(email, password);
+            console.log(user);
             resetFormFields();
         } catch (error) {
-            console.log("login error");
+            if (error.code === "auth/wrong-password") {
+                alert("Incorrect Password for email");
+            } else if (error.code === "auth/user-not-found") {
+                alert("Email doesnt exist please sign up")
+            }
         }
         console.log("handler Submit called");
     }
 
     const logGoogleUse = async () => {
-        const { user } = await signInWithGooglePopUp();
-        const userDocRef = await createUserDocumentFromAuth(user);
+            await signInWithGooglePopUp();
+       
     }
 
     return <div className="sign-in-container">
@@ -46,7 +50,7 @@ const SignInForm = () => {
         <FormInput label="Password" type="password" required name='password' value={password} onChange={handleChange}></FormInput>
         <div className="buttons-container">
             <Button type="submit" onClick={handlerSubmit}>SIGN IN</Button>
-            <Button buttonType={"google"} onClick={logGoogleUse}>GOOGLE SIGN IN</Button>
+            <Button type="button" buttonType={"google"} onClick={logGoogleUse}>GOOGLE SIGN IN</Button>
         </div>
 
     </div>
