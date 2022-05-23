@@ -6,8 +6,7 @@ import { getAuth,
          createUserWithEmailAndPassword,
          signInWithEmailAndPassword,
          signOut,
-         onAuthStateChanged,
-         ActionCodeOperation
+         onAuthStateChanged
          } from 'firebase/auth';
 
 import {
@@ -32,7 +31,7 @@ const firebaseConfig = {
   };
   
   // Initialize Firebase
-  const firebaseApp = initializeApp(firebaseConfig);
+   initializeApp(firebaseConfig);
 
   const googleProvider = new GoogleAuthProvider();
 

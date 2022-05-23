@@ -1,7 +1,7 @@
 import Button, {BUTTN_TYPE_CLASSES} from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
-import { auth, signInWithGooglePopUp,signInWithManualUserNameandPassword, createUserDocumentFromAuth, signInWithGoogleRedirect } from "../../utils/firebase/firebase.utils";
+import { signInWithGooglePopUp,signInWithManualUserNameandPassword } from "../../utils/firebase/firebase.utils";
 import { SignInContainer, ButtonContainer}  from "./sign-in-form.styles.jsx";
 
 const defaultFormFields = {

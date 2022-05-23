@@ -30,7 +30,7 @@ const categories = [
 
 ];
 
-const Directory = ({}) => {
+const Directory = () => {
    return  <CategoriesContainer>
     {categories.map((category) => (
       <DirectoryItem key={category.id} category={category}/>
