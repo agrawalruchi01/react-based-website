@@ -9,13 +9,13 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 
 import CartIcon from "../../components/card-icon/card-icon.component";
 import CartDropdown from "../../components/card-dropdown/card-dropdown.component";
-
-import { CartContext } from "../../contexts/cart.context";
 import { NavigationContainer, LogoContainer, NavLinksContainer, NavLink } from "./navigation.styles";
+
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
-    const { isCartOpen } = useContext(CartContext);
+    const isCartOpen = useSelector(selectIsCartOpen);
 
     const signOutHandler = async () => {
        await signOutUser();
