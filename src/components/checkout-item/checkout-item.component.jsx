@@ -11,7 +11,7 @@ const CheckoutItem = ({ cardItem }) => {
 
     const clearCartHandler = () => {
         dispatch(clearCardItemFromCart(cardItems, cardItem));
-    }
+}
 
     const removeItemHandler =() => {
         dispatch(removeItemFromCart(cardItems, cardItem));

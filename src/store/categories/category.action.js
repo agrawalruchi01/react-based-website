@@ -12,12 +12,12 @@ export const fetchCategoriesFailed = (error) => {
     return createAction( CATEGORIES_ACTION_TYPE.FETCH_CATEGORIES_FAILED,  error);
 }
 
-export const fetchCategoriesAsync = () => async(dispatch) => {
-    dispatch(fetchCategoriesStart());
-    try {
-        const categoryArray  = await getCategoriesAndDocuments();
-        dispatch(fetchCategoriesSuccess(categoryArray));
-    } catch (error) {
-        dispatch(fetchCategoriesFailed(error));
-    }
-}
+// export const fetchCategoriesAsync = () => async(dispatch) => {
+//     dispatch(fetchCategoriesStart());
+//     try {
+//         const categoryArray  = await getCategoriesAndDocuments();
+//         dispatch(fetchCategoriesSuccess(categoryArray));
+//     } catch (error) {
+//         dispatch(fetchCategoriesFailed(error));
+//     }
+// }

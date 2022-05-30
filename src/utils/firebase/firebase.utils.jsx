@@ -19,6 +19,7 @@ import {
     query,
     getDocs,
 } from 'firebase/firestore';
+import { useDebugValue } from 'react';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -97,7 +98,7 @@ export const getCategoriesAndDocuments = async () => {
         }
      } 
 
-     return userDocRef;
+     return userSnapshot;
   }
 
   export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -117,4 +118,17 @@ export const signOutUser = () => signOut(auth);
 export const onAuthStateChangedListener = (callback) => {
     if (!callback) return;
     onAuthStateChanged(auth, callback);
+}
+
+export const getCurrentUser = () => {
+    return new Promise((resolve,reject) => {
+        const unsubscribe = onAuthStateChanged(auth,
+            (userAuth) => {
+                unsubscribe();
+                console.log("onAuthStateChanged")
+                resolve(userAuth);
+            },
+            reject
+            );
+    })
 }

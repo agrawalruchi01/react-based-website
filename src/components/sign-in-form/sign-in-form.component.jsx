@@ -1,8 +1,11 @@
 import Button, {BUTTN_TYPE_CLASSES} from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
-import { signInWithGooglePopUp,signInWithManualUserNameandPassword } from "../../utils/firebase/firebase.utils";
+import { signInWithManualUserNameandPassword } from "../../utils/firebase/firebase.utils";
 import { SignInContainer, ButtonContainer}  from "./sign-in-form.styles.jsx";
+import { useDispatch } from "react-redux";
+import {onGoogleSignInStart} from "../../store/user/user.saga"
+import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
     email: '',
@@ -12,6 +15,7 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
+    const dispatch = useDispatch();
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -22,25 +26,25 @@ const SignInForm = () => {
         setFormFields({ ...formFields, [name]: value });
     }
 
-    const handlerSubmit = async (event) => {
+    const handlerSubmit = (event) => {
         event.preventDefault();
-        try {
-            const {user} = await signInWithManualUserNameandPassword(email, password);
-            console.log(user);
-            resetFormFields();
-        } catch (error) {
-            if (error.code === "auth/wrong-password") {
-                alert("Incorrect Password for email");
-            } else if (error.code === "auth/user-not-found") {
-                alert("Email doesnt exist please sign up")
-            }
-        }
-        console.log("handler Submit called");
+        dispatch(emailSignInStart(email, password))
+        // try {
+        //     const {user} = await signInWithManualUserNameandPassword(email, password);
+        //     console.log(user);
+        //     resetFormFields();
+        // } catch (error) {
+        //     if (error.code === "auth/wrong-password") {
+        //         alert("Incorrect Password for email");
+        //     } else if (error.code === "auth/user-not-found") {
+        //         alert("Email doesnt exist please sign up")
+        //     }
+        // }
+        // console.log("handler Submit called");
     }
 
-    const logGoogleUse = async () => {
-            await signInWithGooglePopUp();
-       
+    const logGoogleUse = () => {
+           dispatch(googleSignInStart());
     }
 
     return <SignInContainer>
