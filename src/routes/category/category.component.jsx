@@ -2,9 +2,9 @@ import {CategoryContainer, CategoryTitle} from "./category.styles.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/product-card/product-card.component";
-import { selectCategoriesMap, selectCategoriesIsloading } from "../../store/categories/category.selector.js";
+import { selectCategoriesMap, selectCategoriesIsloading } from "../../store/categories/category.selector";
 import { useSelector } from "react-redux";
-import Spinner from "../../components/spinner/spinner.component.jsx";
+import Spinner from "../../components/spinner/spinner.component";
 
 const Category = () => {
     const { category } = useParams();

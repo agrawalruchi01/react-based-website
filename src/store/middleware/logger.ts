@@ -1,4 +1,7 @@
-export const customMiddleWare = (store) => (next) => (action) => {
+import { Middleware } from "redux";
+import { RootState } from "../store";
+
+export const customMiddleWare: Middleware<{},RootState> = (store) => (next) => (action) => {
     if (!action.type) {
        return next(action);
     }

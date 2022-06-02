@@ -38,7 +38,7 @@ const Checkout = () => {
 
         }
         <Total>Total : {cartTotal} </Total>
-        <PaymentForm/>
+        {/* <PaymentForm/> */}
     </CheckoutContainer >
 }
 
